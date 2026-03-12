@@ -64,7 +64,7 @@ body {
   z-index: 1;
 }
 
-.category-button::before, .lang-button::before, .music-button::before, prod-button::before, .sub-button::before {
+.category-button::before, .lang-button::before, .music-button::before, .prod-button::before, .sub-button::before {
   background: linear-gradient(120deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 80%);
   content: '';
   height: 200%;
@@ -232,6 +232,10 @@ h2 {
   transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
+.lang-buttons a, .music-buttons a, .prod-buttons a, .sub-buttons-container a {
+  pointer-events: none;
+}
+
 .lang-button.show, .music-button.show, .prod-button.show, .sub-button.show {
   opacity: 1;
   pointer-events: auto;
@@ -356,10 +360,6 @@ p {
   z-index: 0;
 }
 
-.prod-button a::before {
-  pointer-events: none;
-}
-
 .recipe-card {
   border: 1px solid rgba(255,255,255,.2);
   border-radius: 14px;
@@ -458,12 +458,3 @@ p {
 #third-place img {
   box-shadow: 0 0 6px 6px rgba(205, 127, 50, 0.6);
 }
-
-
-
-
-
-
-
-
-
