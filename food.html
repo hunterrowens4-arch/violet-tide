@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Violet Tide</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-<link rel='stylesheet' type='text/css' href='style.css'>
+<link rel='stylesheet' type='text/css' href='style.css'
 
 </head>
 
@@ -23,6 +23,7 @@
     <div class='filters type-filters'> <!-- filter buttons for type of entry -->
       <h2>Filter by Type</h2>
       <button class='active' data-type='all'>All</button>
+      <button data-type='dinner'>Dinners</button>
       <button data-type='dessert'>Desserts</button>
     </div>
 
@@ -31,6 +32,32 @@
   <section class='recipe-grid' id='recipeGrid'>
 
     <a class='recipe-card' href=''
+      data-category='dinner'
+      target='_blank'>
+
+      <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSz6juI-XWCHXoLm4Q8hP9pbtWZVAusJ6QcNA&s'>
+      <div class='card-content'>
+        <span class='tag'>Dinner</span>
+        <h2>Chicken Alfredo Pockets</h2>
+        <p>The deliciousness of chicken alfredo in the convenience of a crescent roll!</p>
+      </div>
+
+    </a> <!-- end of "Chicken Alfredo Pockets" recipe -->
+
+    <a class='recipe-card' href='https://www.saltandlavender.com/creamy-lemon-salmon'
+      data-category='dinner'
+      target='_blank'>
+
+      <img src='https://www.saltandlavender.com/wp-content/uploads/2018/06/creamy-lemon-salmon-5-720x1016.jpg'>
+      <div class='card-content'>
+        <span class='tag'>Dinner</span>
+        <h2>Creamy Lemon Salmon</h2>
+        <p>Salmon and a scratch made lemon sauce all in one pan? It's too good to be true!</p>
+      </div>
+
+    </a> <!-- end of "Creamy Lemon Salmon" recipe -->
+
+    <a class='recipe-card' href='https://thesaltedsweets.com/marshmallow-crispy-cookies-costco-copycat/#recipe'
       data-category='dessert'
       target='_blank'>
 
@@ -45,14 +72,7 @@
 
   </section>
 
-  <a href='recipes.html'><button class='category-button'>Drinks</button></a>
-
   <script>
-
-  // initial scroll to collapse blank space on casi-app interface
-  document.addEventListener("DOMContentLoaded", function() {
-    window.scrollTo(0, 47);
-  });
 
   // filter functionality
   document.addEventListener("DOMContentLoaded", () => {
@@ -72,11 +92,41 @@
       });
     });
 
+    document.querySelectorAll(".base-filters button").forEach(button => {
+      button.addEventListener("click", () => {
+        document.querySelectorAll(".base-filters button")
+          .forEach(btn => btn.classList.remove("active"));
+ 
+        button.classList.add("active");
+        activeFilters.base = button.dataset.base;
+        applyFilters();
+      });
+    });
+
+    document.querySelectorAll(".event-filters button").forEach(button => {
+      button.addEventListener("click", () => {
+        document.querySelectorAll(".event-filters button")
+          .forEach(btn => btn.classList.remove("active"));
+  
+        button.classList.add("active");
+        activeFilters.event = button.dataset.event;
+        applyFilters();
+      });
+    });
+
     function applyFilters() {
       document.querySelectorAll(".recipe-card").forEach(card => {
         const matchesCategory =
           activeFilters.category === "all" ||
           card.dataset.category === activeFilters.category;
+
+        const matchesBase =
+          activeFilters.base === "all" ||
+          card.dataset.base === activeFilters.base;
+
+         const matchesEvent =
+          activeFilters.event === "all" ||
+          card.dataset.event === activeFilters.event;
 
         card.style.display =
           matchesCategory && matchesBase && matchesEvent ? "block" : "none";
@@ -84,6 +134,33 @@
     }
 
   });
+
+  // Floating particles
+  const wrapper = document.getElementById('background-wrapper');
+  for (let i = 0; i < 20; i++) {
+    const particle = document.createElement('div');
+    particle.classList.add('particle');
+
+    const size = Math.random() * 10 + 5;
+    particle.style.width = particle.style.height = `${size}px`;
+
+    // random horizontal start
+    const startX = Math.random() * 100;
+    particle.style.left = `${startX}vw`;
+
+    // random vertical start
+    const startY = Math.random() * 100;
+    particle.style.top = `${startY}vh`;
+
+    // random animation duration and delay
+    particle.style.animationDuration = `${10 + Math.random() * 20}s`;
+
+    // random horizontal drift (angle)
+    const drift = (Math.random() * 2 - 1) * 50;
+    particle.style.setProperty('--drift', `${drift}px`);
+
+    wrapper.appendChild(particle);
+  }
 
   </script>
 
