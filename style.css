@@ -7,6 +7,10 @@
   box-sizing: border-box;
 }
 
+a {
+  text-decoration: none;
+}
+
 .back-button {
   margin-top: 50px;
 }
@@ -45,7 +49,7 @@ body {
   margin: 0 15px 7px;
 }
 
-.category-button, .filters button, .lang-button, .music-button, .page-button, .prod-button, .sub-button {
+.category-button, .filters button, .lang-button, .music-button, .prod-button, .sub-button {
   animation: pulse 2.5s infinite alternate, buttonBaseGlow 10s ease infinite;
   background: linear-gradient(135deg, #cfa0ff, #7df9ff);
   border: none;
@@ -159,6 +163,7 @@ body {
 }
 
 .game-cover {
+  aspect-ratio: 2 / 3;
   display: block;
   height: auto;
   object-fit: cover;
@@ -350,6 +355,25 @@ p {
   line-height: 1.25em;
   margin: 0 10px 10px;
   opacity: 0.8;
+}
+
+.page-button {
+  animation: pulse 2.5s infinite alternate, buttonBaseGlow 10s ease infinite;
+  background: linear-gradient(135deg, #cfa0ff, #7df9ff);
+  border: none;
+  border-radius: 16px;
+  color: #1a0d2b;
+  cursor: pointer;
+  display: block;
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 24px;
+  min-width: 220px;
+  overflow: hidden;
+  padding: 18px 40px;
+  position: relative;
+  text-decoration: none;
+  z-index: 1;
 }
 
 .particle {
